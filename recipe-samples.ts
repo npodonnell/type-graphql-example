@@ -1,6 +1,5 @@
-import { plainToClass } from "class-transformer";
-
-import { Recipe } from "./recipe-type";
+import { plainToClass } from "class-transformer"
+import { Recipe } from "./recipe-type"
 
 export function createRecipeSamples() {
     return plainToClass(Recipe, [
@@ -22,5 +21,5 @@ export function createRecipeSamples() {
             ratings: [5, 4],
             creationDate: new Date(),
         },
-    ]);
+    ])
 }

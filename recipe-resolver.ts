@@ -1,14 +1,4 @@
-import {
-    Resolver,
-    Query,
-    FieldResolver,
-    Arg,
-    Root,
-    Mutation,
-    Float,
-    Int,
-    ResolverInterface,
-} from "type-graphql"
+import { Resolver, Query, FieldResolver, Arg, Root, Mutation, Float, Int, ResolverInterface } from "type-graphql"
 import { plainToClass } from "class-transformer"
 import { Recipe } from "./recipe-type"
 import { RecipeInput } from "./recipe-input"
@@ -16,16 +6,16 @@ import { createRecipeSamples } from "./recipe-samples"
 
 @Resolver(of => Recipe)
 export class RecipeResolver implements ResolverInterface<Recipe> {
-    private readonly items: Recipe[] = createRecipeSamples();
+    private readonly items: Recipe[] = createRecipeSamples()
 
     @Query(returns => Recipe, { nullable: true })
     async recipe(@Arg("title") title: string): Promise<Recipe | undefined> {
-        return await this.items.find(recipe => recipe.title === title);
+        return this.items.find(recipe => recipe.title === title)
     }
 
     @Query(returns => [Recipe], { description: "Get all the recipes from around the world " })
     async recipes(): Promise<Recipe[]> {
-        return await this.items;
+        return this.items
     }
 
     @Mutation(returns => Recipe)
@@ -35,9 +25,9 @@ export class RecipeResolver implements ResolverInterface<Recipe> {
             title: recipeInput.title,
             ratings: [],
             creationDate: new Date(),
-        });
-        await this.items.push(recipe);
-        return recipe;
+        })
+        await this.items.push(recipe)
+        return recipe
     }
 
     @FieldResolver()
@@ -45,6 +35,6 @@ export class RecipeResolver implements ResolverInterface<Recipe> {
         @Root() recipe: Recipe,
         @Arg("minRate", type => Int, { defaultValue: 0.0 }) minRate: number,
     ): number {
-        return recipe.ratings.filter(rating => rating >= minRate).length;
+        return recipe.ratings.filter(rating => rating >= minRate).length
     }
 }
