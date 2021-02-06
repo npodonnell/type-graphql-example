@@ -1,14 +1,12 @@
 {
   "name": "type-graphql-example",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Standalone \"simple-usage\" example from TypeGraphQL examples folder.",
+  "author": "N. P. O'Donnell",
+  "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node index"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "apollo-server": "^2.19.2",
     "ts-node": "^9.1.1",
