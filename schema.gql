@@ -3,36 +3,33 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+"""Actor"""
+type Actor {
+  bio: String!
+  dateOfBirth: DateTime!
+  dateOfDeath: DateTime
+  id: String!
+  movies: [Movie!]!
+  name: String!
+  topMovie: Movie!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
 scalar DateTime
 
-type Mutation {
-  addRecipe(recipe: RecipeInput!): Recipe!
+"""Movie"""
+type Movie {
+  actors: [Actor!]!
+  description: String!
+  id: String!
+  title: String!
+  topActor: Actor!
+  year: Int!
 }
 
 type Query {
-  recipe(title: String!): Recipe
-
-  """Get all the recipes from around the world """
-  recipes: [Recipe!]!
-}
-
-"""Object representing cooking recipe"""
-type Recipe {
-  averageRating: Float
-  creationDate: DateTime!
-
-  """The recipe description with preparation info"""
-  description: String
-  ratings: [Int!]!
-  ratingsCount(minRate: Int = 0): Int!
-  specification: String @deprecated(reason: "Use `description` field instead")
-  title: String!
-}
-
-input RecipeInput {
-  description: String
-  title: String!
+  actor(id: String!): Actor
+  movie(id: String!): Movie
 }
