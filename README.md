@@ -27,60 +27,57 @@ Then navigate to the GraphQL playground at http://localhost:4000/
 
 ### Example Queries
 
-Get all recipes:
+The example features an IMDB-like database of actors and movies.
+
+### Actors
+
+Get Patrick Swayze, together with title and year of his movies:
 ```graphql
 {
-    recipes {
-        description
-        title
-        ratings
-        creationDate
-        averageRating
+    actor(id: "a523") {
+        id
+        name
+        dateOfBirth
+        dateOfDeath
+        bio
+        movies {
+            title
+            year
+        }
     }
 }
 ```
 
-Get only "Recipe 2":
+Get Jake Gyllenhaal, together with title and year of his movies:
 ```graphql
 {
-  recipe(title: "Recipe 2") {
-    description
-    title
-    ratings
-    creationDate
-    averageRating
-  }
-}
-```
-
-Add a new recipe:
-```graphql
-mutation {
-  addRecipe(recipe: {
-    title: "Banana bread"
-    description: "Delicious"
-  }) {
-    description
-    title
-    ratings
-    creationDate
-    averageRating
-  }
-}
-```
-
-Now open a new tab and fetch the banana bread recipe:
-
-```graphql
-{
-    recipe(title: "Banana bread") {
-        description
-        title
-        ratings
-        creationDate
-        averageRating
+    actor(id: "a327") {
+        id
+        name
+        dateOfBirth
+        dateOfDeath
+        bio
+        movies {
+            title
+            year
+        }
     }
 }
 ```
 
-🍌🍞
+### Movies
+
+Get Donnie Darko, together with actors' names:
+```graphql
+{
+    movie(id: "m839") {
+        id
+        title
+        description
+        year
+        actors {
+            name
+        }
+    }
+}
+```
